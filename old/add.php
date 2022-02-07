@@ -298,7 +298,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
                 <br />
             <div class="form-actions">
                 <input type="submit" class="btn btn-success" name="submit" value="submit">
-                <a class="btn" href="index.php">Back</a>
+               <button><a class="btn" href="index.php">Back</a></button> 
             </div>
             <p>
 

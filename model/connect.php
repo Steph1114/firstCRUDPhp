@@ -17,7 +17,7 @@
                 try { 
                     //instancie l’objet PDO qui nous permet le lien à la base
                     self::$bdd = new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword); 
-                    echo "Successfully connected !";
+                //    echo "Successfully connected !";
                     echo '<br>';
                 } catch(PDOException $e) {
 
