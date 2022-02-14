@@ -2,7 +2,7 @@
     include ('head.php');
 
 
-    //Loc = vue souhaiter de l'user
+    //Loc = vue souhaitee de l'user
     $loc = filter_input(INPUT_GET, "loc", FILTER_SANITIZE_STRING);
 
     switch ($loc) {
@@ -25,7 +25,7 @@
           break;
 
         case 'delete':
-          include("../controller/C_delete.php");
+          // include("../controller/C_delete.php");
           include("view/V_delete.php");
           break;
 

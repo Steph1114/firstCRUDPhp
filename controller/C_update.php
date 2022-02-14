@@ -63,11 +63,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailError = 'Please enter a valid Email Address';
         $valid = false;
+    } elseif (!preg_match("/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,4}+$/", $email)) {
+        $emailError = 'Please enter a valid Email Address';
+        $valid = false;
     }
 
-    //verification champ age
+    //verification champ age //0 - 150
     if (empty($age)) {
         $ageError = 'Please enter your age';
+        $valid = false;
+    } elseif (preg_match("#^[0-9]*$#", $age)) {
+        if ($age > 150 || $age <= 0) {
+            $ageError = 'Please enter a valid age, number between 0 to 150';
+            $valid = false;
+        }
+    } elseif (!preg_match("#^[0-9]*$#", $age)) {
+
+        $ageError = 'Please enter a valid age, number between 0 to 150';
         $valid = false;
     }
 
@@ -108,11 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     }
 
 
-    // mise à jour des donnés 
+    // mise à jour des données 
     if ($valid) {
 
         //on lance la connection 
-        $pdo = Database::connect();
+        $pdo = Database::getConnetion();
 
         //PDO : represente la connection entre php et un serveur de base de donnee
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -132,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     }
 } else {
 
-    $pdo = Database::connect();
+    $pdo = Database::getConnetion();
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

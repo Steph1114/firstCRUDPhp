@@ -51,7 +51,7 @@
 
                 <br />
                 <div class="controls">
-                    <input type="text" name="firstname" value="<?php echo !empty($firstname) ? $firstname : ''; ?>">
+                    <input type="text" name="firstname" placeholder="first name" value="<?php echo !empty($firstname) ? $firstname : ''; ?>">
                     <?php if (!empty($firstnameError)) : ?>
                         <span class="help-inline"><?php echo $firstnameError; ?></span>
                     <?php endif; ?>
@@ -69,7 +69,7 @@
 
                 <br />
                 <div class="controls">
-                    <input type="number" name="age" value="<?php echo !empty($age) ? $age : ''; ?>">
+                    <input type="number" placeholder="number between 0 to 150" name="age" value="<?php echo !empty($age) ? $age : ''; ?>">
                     <?php if (!empty($ageError)) : ?>
                         <span class="help-inline"><?php echo $ageError; ?></span>
                     <?php endif; ?>
@@ -189,8 +189,8 @@
             <!-- Champ first bouton / type submit -->
                 <br />
             <div class="form-actions">
-                <input type="submit" class="btn btn-success" name="submit" value="submit">
-                <button><a class="btn btn-add" href="../index.php">Back</a></button> 
+                <input type="submit" class="btn btn-success btn-update" name="submit" value="submit">
+                <button class="btn-read"><a class="btn" href="../index.php">Back</a></button> 
             </div>
             <p>
 

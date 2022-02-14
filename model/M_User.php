@@ -1,228 +1,72 @@
 <?php
-    class User
+
+include('../model/connect.php');
+include('../model/M_User.php');
+
+class M_User{
+    private $dbh;  //databasehost
+
+    function __construct()
     {
+        $this->dbh = Database::getConnetion();
+    }
 
-        private $id;
+    //fonction comportant Requete qui affichage de tous les users dans la db //READ
+    public function getAllUsers()
+    {
+        $sth = $this->dbh->prepare("SELECT * FROM user");
+        $sth->execute();
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, 'name');
+        return $result;
+    }
 
-        private $name;
-    
-        private $firstname;
-    
-        private $age;
-    
-        private $telephone;
-    
-        private $email;
-    
-        private $country;
+    //fonction comportant Requete qui affichera chaque user selon son id
+    public function getUserById($id)
+    {
+        $sth = $this->dbh->prepare("SELECT * FROM user WHERE id = :id");
+        $sth->execute(array(':id' => $id));
+        $sth->setFetchMode(PDO::FETCH_CLASS, 'name');
+        $result = $sth->fetch();
+        return $result;
+    }
 
-        private $comment;
+    //fonction comportant Requete qui permettra de creer un champ user  //CREATE
+    public function createUser($name, $firstname, $age, $tel, $email, $country, $comment, $job, $url)
+    {
+        $sth = $this->dbh->prepare("INSERT INTO user (name,firstname,age,tel, email, country,comment, job,url) values(:name, :firstname, :age, :tel, :email, :country, :comment, :job, :url)");
+        $sth->execute();
+        $sth->bindParam(":username", $name);
+        $sth->bindParam(":firstname", $firstname);
+        $sth->bindParam(":age", $age);
+        $sth->bindParam(":tel", $tel);
+        $sth->bindParam(":email", $email);
+        $sth->bindParam(":country", $country);
+        $sth->bindParam(":comment", $comment);
+        $sth->bindParam(":job", $job,);
+        $sth->bindParam(":url", $url);
+        $result = $sth->execute();
+        header("Location: ../index.php");
+        return $result;
+    }
 
-        private $job;
-    
-        private $url;
+     //fonction comportant Requete qui permettra de mettre a jour un user // UPDATE
+    public function updateUser(){
+        include('C_update.php');
 
-        /**
-         * Get the value of url
-         */
-        public function getUrl()
-        {
-            return $this->url;
-        }
+    // on vérifie nos champs 
+    $valid = true;
 
-        /**
-         * Set the value of url
-         *
-         * @return  self
-         */
-        public function setUrl($url)
-        {
-            $this->url = $url;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of job
-         */
-        public function getJob()
-        {
-            return $this->job;
-        }
-
-        /**
-         * Set the value of job
-         *
-         * @return  self
-         */
-        public function setJob($job)
-        {
-            $this->job = $job;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of comment
-         */
-        public function getComment()
-        {
-            return $this->comment;
-        }
-
-        /**
-         * Set the value of comment
-         *
-         * @return  self
-         */
-        public function setComment($comment)
-        {
-            $this->comment = $comment;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of country
-         */
-        public function getCountry()
-        {
-            return $this->country;
-        }
-
-        /**
-         * Set the value of country
-         *
-         * @return  self
-         */
-        public function setCountry($country)
-        {
-            $this->country = $country;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of email
-         */
-        public function getEmail()
-        {
-            return $this->email;
-        }
-
-        /**
-         * Set the value of email
-         *
-         * @return  self
-         */
-        public function setEmail($email)
-        {
-            $this->email = $email;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of telephone
-         */
-        public function getTelephone()
-        {
-            return $this->telephone;
-        }
-
-        /**
-         * Set the value of telephone
-         *
-         * @return  self
-         */
-        public function setTelephone($telephone)
-        {
-            $this->telephone = $telephone;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of age
-         */
-        public function getAge()
-        {
-            return $this->age;
-        }
-
-        /**
-         * Set the value of age
-         *
-         * @return  self
-         */
-        public function setAge($age)
-        {
-            $this->age = $age;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of firstname
-         */
-        public function getFirstname()
-        {
-            return $this->firstname;
-        }
-
-        /**
-         * Set the value of firstname
-         *
-         * @return  self
-         */
-        public function setFirstname($firstname)
-        {
-            $this->firstname = $firstname;
-
-            return $this;
-        }
-
-        /**
-         * Get the value of name
-         */
-        public function getName()
-        {
-            return $this->name;
-        }
-
-        /**
-         * Set the value of name
-         *
-         * @return  self
-         */
-        public function setName($name)
-        {
-            $this->name = $name;
-
-            return $this;
-        }
-
-
-        /**
-         * Get the value of id
-         */
-        public function getId()
-        {
-            return $this->id;
-        }
-
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */
-        public function setId($id)
-        {
-            $this->id = $id;
-
-            return $this;
-        }
 
     }
+
+    //fonction comportant Requete qui permettra de supprimer un user // DELETE
+    public function deleteUser(){
+        include('C_delete.php');
+    }
+
+
+
+}
+
 
 ?>
