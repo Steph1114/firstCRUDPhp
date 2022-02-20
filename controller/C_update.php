@@ -40,12 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     // on vérifie nos champs 
     $valid = true; //boolean (set on true)
 
+
     //verification champ name
     if (empty($name)) {
         $nameError = 'Please enter Name';
         $valid = false;
     } else if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $nameError = "Only letters and white space allowed";
+    } elseif (strlen($name) > 250) {
+        $nameError = 'Please enter a valid name. Yours is too long';
+        $valid = false;
     }
 
     //verification champ firstname
@@ -54,7 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
         $valid = false;
     } else if (!preg_match("/^[a-zA-Z ]*$/", $firstname)) { //$name
         $firstnameError = "Only letters and white space allowed";      //$nameError   
+    } elseif (strlen($firstname) > 250) {
+        $firstnameError = 'Please enter a valid name. Yours is too long';
+        $valid = false;
     }
+
+    if (strlen($name) > 250) {
+        $messageError;}
+
 
     //verification champ email 
     if (empty($email)) {
@@ -107,8 +118,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     //verification champ job
     if (empty($job)) {
         $jobError = 'Please select a job';
-        $valid = false;
-    }
+        $valid = false;   
+    } 
+    
+    //mettre global dans un array puis ce code
+    // elseif (count($job)>2) {
+    //     $jobError = 'Please select only one job';
+    //     $valid = false;
+    // }
+
 
     //verification champ url
     if (empty($url)) {

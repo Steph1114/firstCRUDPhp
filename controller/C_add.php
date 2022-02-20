@@ -35,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
         $valid = false;
     } else if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $nameError = "Only letters and white space allowed";
+    } elseif (strlen($name) > 250) {
+        $nameError = 'Please enter a valid name. Yours is too long';
+        $valid = false;
     }
 
     //verification champ firstname
@@ -43,6 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
         $valid = false;
     } else if (!preg_match("/^[a-zA-Z ]*$/", $firstname)) { //$name
         $firstnameError = "Only letters and white space allowed";      //$nameError   
+    } elseif (strlen($firstname) > 250) {
+        $$firstnameError = 'Please enter a valid name. Yours is too long';
+        $valid = false;
     }
 
     //verification champ email 

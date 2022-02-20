@@ -140,9 +140,13 @@
 
                 <br />
                 <div class="controls">
-                    Dev  <input type="checkbox" name="job" value="dev" <?php if (isset($job) && $job == "dev") echo "checked"; ?>>
-                    Integrateur <input type="checkbox" name="job" value="integrateur" <?php if (isset($job) && $job == "integrateur") echo "checked"; ?>>
-                    Reseau <input type="checkbox" name="job" value="reseau" <?php if (isset($job) && $job == "reseau") echo "checked"; ?>>
+                    <!-- Dev  <input type="checkbox" name="job" value="dev" <?php // if (isset($job) && $job == "dev") echo "checked"; ?>>
+                    Integrateur <input type="checkbox" name="job" value="integrateur" <?php // if (isset($job) && $job == "integrateur") echo "checked"; ?>>
+                    Reseau <input type="checkbox" name="job" value="reseau" <?php // if (isset($job) && $job == "reseau") echo "checked"; ?>> -->
+
+                    Dev  <input type="radio" name="job" value="dev" <?php if (isset($job) && $job == "dev") echo "checked"; ?>>
+                    Integrateur <input type="radio" name="job" value="integrateur" <?php if (isset($job) && $job == "integrateur") echo "checked"; ?>>
+                    Reseau <input type="radio" name="job" value="reseau" <?php if (isset($job) && $job == "reseau") echo "checked"; ?>>
                 </div>
                 <p>
 

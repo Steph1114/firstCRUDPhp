@@ -110,14 +110,11 @@
 
                 <br />
             <div class="control-group<?php echo !empty($countryError) ? 'error' : ''; ?>">
+
                 <select name="country">
-
                     <option value="paris">Paris</option>
-
                     <option value="londres">Londres</option>
-
                     <option value="amsterdam">Amsterdam</option>
-
                 </select>
                 <?php if (!empty($countryError)) : ?>
                     <span class="help-inline"><?php echo $countryError; ?></span>
@@ -130,9 +127,13 @@
 
                 <br />
                 <div class="controls">
-                    Dev : <input type="checkbox" name="job" value="dev" <?php if (isset($job) && $job == "dev") echo "checked"; ?>>
-                    Integrateur <input type="checkbox" name="job" value="integrateur" <?php if (isset($job) && $job == "integrateur") echo "checked"; ?>>
-                    Reseau <input type="checkbox" name="job" value="reseau" <?php if (isset($job) && $job == "reseau") echo "checked"; ?>>
+                    <!-- Dev : <input type="checkbox" name="job" value="dev" <?php // if (isset($job) && $job == "dev") echo "checked"; ?>>
+                    Integrateur <input type="checkbox" name="job" value="integrateur" <?php // if (isset($job) && $job == "integrateur") echo "checked"; ?>>
+                    Reseau <input type="checkbox" name="job" value="reseau" <?php // if (isset($job) && $job == "reseau") echo "checked"; ?>> -->
+
+                    Dev  <input type="radio" name="job" value="dev" <?php if (isset($job) && $job == "dev") echo "checked"; ?>>
+                    Integrateur <input type="radio" name="job" value="integrateur" <?php if (isset($job) && $job == "integrateur") echo "checked"; ?>>
+                    Reseau <input type="radio" name="job" value="reseau" <?php if (isset($job) && $job == "reseau") echo "checked"; ?>>
                 </div>
                 <p>
 
